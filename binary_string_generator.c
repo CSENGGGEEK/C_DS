@@ -1,11 +1,10 @@
 #include<stdio.h>
-#include<math.h>
 int bin_gen(int n,int array[],int index);
 
 void main(){
     int num,array[21000];
     printf("Enter the bits : ");
-    scanf("%d",&num);
+    scanf("%d",&num);	
     bin_gen(num,array,0);
 }
 
