@@ -13,17 +13,17 @@ void addbeg_cll(struct node**,struct node **,int data);
 
 int main(int argc, char const *argv[])
 {
-  /* code */
   struct node *head,*tail;
   head = NULL;
   tail =  NULL;
-  // addbeg_cll(&head,&tail,10);
+  addbeg_cll(&head,&tail,10);
+  append_cll(&head,&tail,50);
   append_cll(&head,&tail,1);
   append_cll(&head,&tail,2);
   append_cll(&head,&tail,3);
   append_cll(&head,&tail,20);
-  // addaft_cll(&head,&tail,3,1);
-  // addaft_cll(&head,&tail,4,2);
+  addaft_cll(&head,&tail,3,1);
+  addaft_cll(&head,&tail,4,2);
   display_cll(&head,&tail);
   return 0;
 }
@@ -68,7 +68,6 @@ void addaft_cll(struct node **head,struct node **tail,int data,int loc){
 
 void addbeg_cll(struct node **head,struct node **tail,int data){
   struct node *temp,*new_node;
-  temp = *head;
   new_node = malloc(sizeof(struct node));
   new_node->data = data;
   if (*head==NULL)
@@ -79,9 +78,13 @@ void addbeg_cll(struct node **head,struct node **tail,int data){
   }
   else
   {
-    temp = *tail;
-    new_node->link = *head;
+    temp = *head;
+    while (temp->link!=*head)
+    {
+      temp = temp->link;
+    }
     temp->link = new_node;
+    new_node->link = *head;
     *head = new_node;
   }
   return;
