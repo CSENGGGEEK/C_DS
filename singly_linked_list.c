@@ -24,7 +24,7 @@ void main()
   append_sll(&head, 30);
   addbeg_sll(&head, 40);
   addbeg_sll(&head, 70);
-  delnode_sll(&head, 20);
+  delnode_sll(&head, 10);
   addbeg_sll(&head, 80);
   addbeg_sll(&head, 90);
   addbeg_sll(&head, 100);
@@ -105,6 +105,7 @@ void delnode_sll(struct node **head, int data)
       if (temp == *head)
       {
         *head = temp->link;
+        break;
       }
       else
       {

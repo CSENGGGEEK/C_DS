@@ -1,53 +1,97 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include<stdio.h>
+#include<stdlib.h>
 
-struct circ_node{
+struct node {
   int data;
-  struct circ_node *link;
+  struct node *link;
 };
 
-typedef struct circ_node CIRC_NODE;
+void display_cll(struct node**,struct node **);
+void append_cll(struct node**,struct node **,int data);
+void addaft_cll(struct node**,struct node **,int data,int loc);
+void addbeg_cll(struct node**,struct node **,int data);
 
-// Function declaration
-void circ_add_at_beg(CIRC_NODE **start,int data);
-void circ_add_after_node(CIRC_NODE **start,int data);
-void circ_append(CIRC_NODE **start,int data);
-void display(CIRC_NODE *start);
-
-int main(int argc, char const *argv[]) {
-  CIRC_NODE *start;
-  start = NULL;
-  circ_append(&start,10);
-  circ_append(&start,20);
-  // display(start);
+int main(int argc, char const *argv[])
+{
+  /* code */
+  struct node *head,*tail;
+  head = NULL;
+  tail =  NULL;
+  // addbeg_cll(&head,&tail,10);
+  append_cll(&head,&tail,1);
+  append_cll(&head,&tail,2);
+  append_cll(&head,&tail,3);
+  append_cll(&head,&tail,20);
+  // addaft_cll(&head,&tail,3,1);
+  // addaft_cll(&head,&tail,4,2);
+  display_cll(&head,&tail);
   return 0;
 }
 
-void circ_append(CIRC_NODE **start,int data) {
-  CIRC_NODE *new_node, *head = *start;
-  new_node = malloc(sizeof(CIRC_NODE));
-  new_node->link = *start;
+void append_cll(struct node **head,struct node **tail,int data){
+  struct node *temp,*new_node;
+  new_node = malloc(sizeof(struct node));
   new_node->data = data;
-  if (*start != NULL) {
-    while (1) {
-      head = head->link;
-      if (head == *start) {
-        head->link = *start;
-        return;
-      }
+  if(*head==NULL){
+    *head = new_node;
+    new_node->link = *head;
+    *tail = new_node;
+  }else
+  {
+    temp = *head;
+    while(temp->link!=*tail){
+      temp=temp->link;
     }
-    head->link = new_node;
-  }else{
-    *start = new_node;
+    new_node->link = temp->link;
+    temp->link = new_node;
+    *tail = new_node;
   }
 }
 
-void display(CIRC_NODE *start){
-  CIRC_NODE *temp = start;
-  while (temp != start) {
-    printf("%d\n",temp->data);
+void addaft_cll(struct node **head,struct node **tail,int data,int loc){
+  struct node *temp,*new_node;
+  temp = *head;
+  for (int i = 0; i < loc; i++)
+  {
     temp = temp->link;
-  }
+    if (temp->link==*tail)
+    {
+      printf("There are less than %d nodes !!",loc);
+      return;
+    }
+  }  
+  new_node = malloc(sizeof(struct node));
+  new_node->data = data;
+  new_node->link = temp->link;
+  temp->link = new_node;
 }
 
-// head -> n1 -> n2 -> n3 -> n4 -> head
+void addbeg_cll(struct node **head,struct node **tail,int data){
+  struct node *temp,*new_node;
+  temp = *head;
+  new_node = malloc(sizeof(struct node));
+  new_node->data = data;
+  if (*head==NULL)
+  {
+    *head = new_node;
+    *tail = new_node;
+    new_node->link = *head;
+  }
+  else
+  {
+    temp = *tail;
+    new_node->link = *head;
+    temp->link = new_node;
+    *head = new_node;
+  }
+  return;
+}
+
+void display_cll(struct node **head,struct node **tail){
+  struct node *temp;
+  temp = *head;
+  do{
+    printf("%d ",temp->data);
+    temp=temp->link;
+  }while (temp->link!=*tail);
+}
