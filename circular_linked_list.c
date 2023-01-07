@@ -38,13 +38,10 @@ void append_cll(struct node **head,struct node **tail,int data){
     *tail = new_node;
   }else
   {
-    temp = *head;
-    while(temp->link!=*tail){
-      temp=temp->link;
-    }
-    new_node->link = temp->link;
+    temp = *tail;
     temp->link = new_node;
     *tail = new_node;
+    new_node->link = *head;
   }
 }
 
