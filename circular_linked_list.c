@@ -93,5 +93,10 @@ void display_cll(struct node **head,struct node **tail){
   do{
     printf("%d ",temp->data);
     temp=temp->link;
-  }while (temp->link!=*tail);
+  }while (temp->link!=*head);
+  if (temp->link == *head)
+  {
+    printf("%d ",temp->data);
+  }
+  
 }

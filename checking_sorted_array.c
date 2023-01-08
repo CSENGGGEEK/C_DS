@@ -16,7 +16,7 @@ void is_array_sorted(int array[],int n){
         {
             is_array_sorted(array,n-1);
         }else
-        {
+        {/* code */
             printf("Array is not in sorted order!!");
         }        
     }
