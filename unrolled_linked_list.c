@@ -21,8 +21,8 @@ struct block{
 // Declaration of functions
 void append(struct block **,int);
 void display(struct block **);
-
-// main function
+void delete(struct block **,int);
+// Main function
 int main()
 {
     struct block *head;
@@ -42,8 +42,53 @@ int main()
     append(&head,13);
     append(&head,14);
     append(&head,15);
+    delete(&head,1);
+    delete(&head,2);
+    delete(&head,3);
+    delete(&head,4);
+    delete(&head,5);
+    delete(&head,6);
+    delete(&head,7);
+    delete(&head,8);
+    delete(&head,9);
+    delete(&head,10);
     display(&head);
     return 0;
+}
+
+void delete(struct block **block_ptr,int data){
+    struct block *block_temp,*block_old; // A pointer variable to iterate over blocks
+    struct node *temp,*old; // A pointer variable to iterate over the nodes of linked list
+    block_old = *block_ptr;
+    block_temp = *block_ptr; // Storing the first node 
+
+    // Iterating over the blocks
+    for (int i = 0; i < block_count; i++)
+    {
+        old = block_temp->head;
+        temp = block_temp->head;
+        // Iterating over the lists inside the blocks
+        for (int j = 0; j < block_temp->node_count; j++)
+        {
+            if (temp->data==data)
+            {
+                if(old == block_temp->head)
+                {
+                    block_temp->head = block_temp->head->link;
+                    block_temp->node_count--;
+                    return;
+                }else{
+                    old->link = temp->link;
+                    block_temp->node_count--;
+                    return;
+                }
+            }
+            old = temp;
+            temp = temp->link;   // Chaging the pointer evertime we iterate
+        }
+        block_old = block_temp;
+        block_temp = block_temp->link; //  Changing the block pointer as we iterate
+    }
 }
 
 // Display function definition
