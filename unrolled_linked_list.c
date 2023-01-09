@@ -76,16 +76,14 @@ void delete(struct block **block_ptr,int data){
                 {
                     block_temp->head = block_temp->head->link;
                     block_temp->node_count--;
-                    return;
                 }else{
                     old->link = temp->link;
                     block_temp->node_count--;
-                    return;
                 }
             }
             old = temp;
             temp = temp->link;   // Chaging the pointer evertime we iterate
-        }
+        }       
         block_old = block_temp;
         block_temp = block_temp->link; //  Changing the block pointer as we iterate
     }
