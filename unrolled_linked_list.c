@@ -101,6 +101,7 @@ void display(struct block **block_ptr){
     // Iterating over the blocks
     for (int i = 0; i < block_count; i++)
     {
+        // Skipping those blocks which are empty
         if (block_temp->node_count == 0)
         {
             block_temp = block_temp->link;
