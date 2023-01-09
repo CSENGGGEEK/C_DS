@@ -3,7 +3,7 @@
 #define MAX 10
 
 int block_count = 0;
-
+int empty_block = 0;
 // Definition of node of linked list
 struct node {
     int data;
@@ -52,6 +52,9 @@ int main()
     delete(&head,8);
     delete(&head,9);
     delete(&head,10);
+    delete(&head,11);
+    delete(&head,12);
+
     display(&head);
     return 0;
 }
@@ -98,12 +101,19 @@ void display(struct block **block_ptr){
     // Iterating over the blocks
     for (int i = 0; i < block_count; i++)
     {
-        temp = block_temp->head;
-        // Iterating over the lists inside the blocks
-        for (int j = 0; j < block_temp->node_count; j++)
+        if (block_temp->node_count == 0)
         {
-            printf("%d ",temp->data); // Printing the data every time
-            temp = temp->link;   // Chaging the pointer evertime we iterate
+            block_temp = block_temp->link;
+            continue;
+        }else
+        {
+            temp = block_temp->head;
+            // Iterating over the lists inside the blocks
+            for (int j = 0; j < block_temp->node_count; j++)
+            {
+                printf("%d ",temp->data); // Printing the data every time
+                temp = temp->link;   // Chaging the pointer evertime we iterate
+            }
         }
         block_temp = block_temp->link; //  Changing the block pointer as we iterate
     }
