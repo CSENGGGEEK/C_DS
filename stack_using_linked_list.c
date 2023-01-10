@@ -31,7 +31,7 @@ void push_stackll(struct node **S, int data) {
 }
 
 void pop_stackll(struct node **S){
-  *S = *S->link;
+  *S = (*S)->link;
 }
 
 void display_stackll(struct node *S){
