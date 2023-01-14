@@ -10,6 +10,7 @@ int count(struct node **);
 void append_sll(struct node **,int);
 void nth_last_ll(struct node **,int,int);
 int nth_last_ll_opt(struct node **,int);
+void nth_last_ll_opt_time_space(struct node **,int);
 
 int main(int argc, char const *argv[])
 {
@@ -81,4 +82,32 @@ int nth_last_ll_opt(struct node **head,int n){
         i++;
     }
     return array[i-n];
+}
+
+void nth_last_ll_opt_time_space(struct node **head,int n){
+    struct node *nth , *temp;
+    temp = *head;
+    nth = NULL; 
+    for (int i = 1; i < n; i++)
+    {
+        temp = temp->link;
+    }
+
+    while (temp)
+    {
+        if (nth == NULL)
+        {
+            nth = *head;
+        }else
+        {
+            nth = nth->link;
+        }
+        temp = temp->link;
+    }
+    
+    if (nth)
+    {
+        return nth;
+    }
+    return NULL;    
 }
