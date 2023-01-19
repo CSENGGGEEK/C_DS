@@ -7,6 +7,7 @@ struct node {
     struct node *right;
 };
 
+
 void construct_tree(struct node **node){
     struct node *new_node;
     int data, left, right;
@@ -19,15 +20,15 @@ void construct_tree(struct node **node){
     scanf("%d",&right);
     *node = new_node;
     new_node->data = data;
-
+    
     if (left == 1)
     {
-        return construct_tree(&new_node->left);
+        construct_tree(&new_node->left);
     }
     
     if (right == 1)
     {
-        return construct_tree(&new_node->right);
+        construct_tree(&new_node->right);
     }
 }
 
