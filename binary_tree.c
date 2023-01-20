@@ -32,9 +32,25 @@ void construct_tree(struct node **node){
     }
 }
 
+void traverse(struct node *node){
+    struct node *temp = node;
+    printf("%d ",temp->data);
+    
+    if (temp->left!=NULL)
+    {
+        traverse(temp->left);
+    }
+
+    if (temp->right!=NULL)
+    {
+        traverse(temp->right);
+    }    
+}
+
 int main(){
     struct node *root_node = NULL;
 
     construct_tree(&root_node);
+    traverse(root_node);
 }
 
