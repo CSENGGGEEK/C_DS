@@ -10,7 +10,7 @@ struct node {
 
 typedef struct node BINARY_NODE;
 
-// Constructuon of the tree 
+// Construction of the tree 
 void construct_tree(BINARY_NODE **node){
     /*
     * Variables for new node 
