@@ -34,13 +34,13 @@ void construct_tree(BINARY_NODE **node){
     *node = new_node;
     new_node->data = data;
     
-    // Creating the left child 
+    // Creating the left Subtree
     if (left == 1)
     {
         construct_tree(&new_node->left);
     }
     
-    // Creating the right child 
+    // Creating the right Subtree 
     if (right == 1)
     {
         construct_tree(&new_node->right);
